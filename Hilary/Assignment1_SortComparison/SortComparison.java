@@ -282,16 +282,20 @@
     }
 
    
-
+    public static String toString(double a[]) {
+    	String result = "" ;
+    	for(int i=0; i<a.length ;i++)
+        {
+        	result = result + a[i]+ " " ;
+        }
+    	return result ;
+    }
 
     public static void main(String[] args) {
-    	double a[] = {12.00,11.00,13.00,5.00,6.00,7.00} ;
+    	double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
         a = selectionSort(a) ;
+        System.out.println(toString(a));
         
-        for(int i=0; i<a.length ;i++)
-        {
-        	System.out.print(a[i]+" ");
-        }
     }
 
  }//end class

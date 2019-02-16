@@ -1,5 +1,11 @@
 import static org.junit.Assert.assertEquals;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -57,15 +63,59 @@ public class SortComparisonTest
      * Check that the methods work for empty arrays
      */
     @Test
-    public void testEmpty()
+    public void testInsertionSort()
     {
+    	
+    	double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
+    	String results = "4.89 5.62 7.99 10.33 12.11 14.67 " ;
+    	
+    	a = SortComparison.insertionSort(a) ;
+    	assertEquals( "Checks insertion sort", results, SortComparison.toString(a) );
+
     }
 
 
-    // TODO: add more tests here. Each line of code and ech decision in Collinear.java should
-    // be executed at least once from at least one test.
-
-    // ----------------------------------------------------------
+    @Test
+    public void testQuickSort()
+    {
+    	double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
+    	String results = "4.89 5.62 7.99 10.33 12.11 14.67 " ;
+    	
+    	a = SortComparison.quickSort(a) ;
+    	assertEquals( "Checks quick sort", results, SortComparison.toString(a) );
+    }
+    
+    @Test
+    public void testMergeSortRecursive()
+    {
+    	double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
+    	String results = "4.89 5.62 7.99 10.33 12.11 14.67 " ;
+    	
+    	a = SortComparison.mergeSortRecursive(a) ;
+    	assertEquals( "Checks quick sort", results, SortComparison.toString(a) );
+    }
+    
+    @Test
+    public void testMergeSortIterative()
+    {
+    	double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
+    	String results = "4.89 5.62 7.99 10.33 12.11 14.67 " ;
+    	
+    	a = SortComparison.mergeSortIterative(a) ;
+    	assertEquals( "Checks quick sort", results, SortComparison.toString(a) );
+    }
+    
+    @Test
+    public void testSelectionSort()
+    {
+    	double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
+    	String results = "4.89 5.62 7.99 10.33 12.11 14.67 " ;
+    	
+    	a = SortComparison.selectionSort(a) ;
+    	assertEquals( "Checks quick sort", results, SortComparison.toString(a) );
+    }
+    
+    
     /**
      *  Main Method.
      *  Use this main method to create the experiments needed to answer the experimental performance questions of this assignment.
@@ -73,7 +123,24 @@ public class SortComparisonTest
      */
     public static void main(String[] args)
     {
-        //TODO: implement this method
+    	 File file = new File("numbers10.txt"); 
+    	  
+    	 BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+    	  
+    	 String st; 
+    	 try {
+			while ((st = br.readLine()) != null) 
+			   System.out.println(st);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }
