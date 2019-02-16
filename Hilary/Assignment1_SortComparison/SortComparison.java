@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 // -------------------------------------------------------------------------
 
 /**
@@ -292,10 +296,35 @@
     }
 
     public static void main(String[] args) {
-    	double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
-        a = selectionSort(a) ;
-        System.out.println(toString(a));
-        
+    	//double a[] = {14.67,10.33,12.11,4.89,5.62,7.99} ;
+        //a = selectionSort(a) ;
+        //System.out.println(toString(a));
+    	long startTime = System.currentTimeMillis();
+    	int index = 0 ;
+    	int size = 1000 ;
+    	double a[] = new double[size] ;
+    	File file = new File("numbersSorted1000.txt");
+    	//System.out.println(System.getProperty("user.dir"));
+    	Scanner sc ;
+    	try {
+			sc = new Scanner(file) ;
+			while((sc.hasNextDouble()))
+			{
+				a[index] = sc.nextDouble() ;
+				index++ ;
+			}
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	a = insertionSort(a) ;
+    	System.out.println(SortComparison.toString(a));
+    	long endTime   = System.currentTimeMillis();
+    	long totalTime = endTime - startTime;
+    	System.out.println(totalTime);
     }
 
  }//end class

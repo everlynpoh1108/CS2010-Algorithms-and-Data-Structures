@@ -1,10 +1,9 @@
 import static org.junit.Assert.assertEquals;
 
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Scanner;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,15 +13,15 @@ import org.junit.runners.JUnit4;
 /**
  *  Test class for SortComparison.java
  *
- *                                      Average Running Times
+ *                                      Average Running Times in milliseconds
  *                          | Insert | Quick | Merge Recursive | Merge Iterative | Selection |
- * 10 random                |        |       |                 |                 |           |
- * 100 random               |
- * 1000 random              |
- * 1000 few unique          | 
- * 1000 nearly ordered      |
- * 1000 reverse order       |
- * 1000 sorted              |
+ * 10 random                |   25   | 27.66 |      25.33      |                 |   25.33   |
+ * 100 random               |  32.33 |  32   |       30        |                 |    31     |
+ * 1000 random              |   61   |  59   |      58.33      |                 |    67     |
+ * 1000 few unique          |  54.67 | 51.67 |       48        |                 |   57.67   |
+ * 1000 nearly ordered      |  59.67 | 56.67 |      55.67      |                 |   67.67   |
+ * 1000 reverse order       |  71.67 | 67.67 |      59.33      |                 |   64.67   |
+ * 1000 sorted              |   56   | 65.33 |       58        |                 |   67.67   |
  *
  * 1. Which of the sorting algorithms does the order of input have an impact on? Why? 
  * 
@@ -123,24 +122,37 @@ public class SortComparisonTest
      */
     public static void main(String[] args)
     {
-    	 File file = new File("numbers10.txt"); 
-    	  
-    	 BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(file));
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} 
-    	  
-    	 String st; 
-    	 try {
-			while ((st = br.readLine()) != null) 
-			   System.out.println(st);
-		} catch (IOException e) {
+    	int index = 0 ;
+    	int size = 100 ;
+    	double a[] = new double[size] ;
+    	File file = new File("numbers100.txt");
+    	//System.out.println(System.getProperty("user.dir"));
+    	Scanner sc ;
+    	try {
+			sc = new Scanner(file) ;
+			while((sc.hasNextDouble()))
+			{
+				a[index] = sc.nextDouble() ;
+				index++ ;
+			}
+			
+			
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	a = SortComparison.selectionSort(a) ;
+    	//System.out.println(SortComparison.toString(a));
+		
+    	
+    	 
+    	
+			
+			
+		
+		
+			
     }
 
 }
